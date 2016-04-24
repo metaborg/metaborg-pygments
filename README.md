@@ -10,7 +10,7 @@ To install the package, run
 
 or add the following line to the `requirements.txt` of a project
 
-    git+https://github.com/metaborg/metaborg-pygments
+    git+https://github.com/metaborg/metaborg-pygments#egg=metaborg-pygments
 
 ## Development
 
