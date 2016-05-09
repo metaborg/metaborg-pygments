@@ -6,6 +6,7 @@ lexers = [
     'nabl     = metaborg.pygments.lexers.meta:NaBLLexer',
     'sdf3     = metaborg.pygments.lexers.meta:SDF3Lexer',
     'stratego = metaborg.pygments.lexers.meta:StrategoLexer',
+    'dynsem   = metaborg.pygments.lexers.meta:DynSemLexer',
 ]
 
 meta_lexers = [
