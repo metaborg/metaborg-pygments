@@ -13,7 +13,7 @@ class DynSemLexer(RegexLexer):
                     'variables','arrows','rules','where','constructors',
                     'true','false','native','operators','datatypes',
                     'implicit','List','Map','fresh','allkeys','allvalues',
-                    'try','or'), suffix=r'\b'), Keyword),
+                    'try','or','case','of','otherwise'), suffix=r'\b'), Keyword),
             (r'(--\>|\:\:|==|=\>|=!=\>)', Operator),
             (r'"[^"^\n]*"', Literal.String),
             (r'\d+', Literal.Number),
