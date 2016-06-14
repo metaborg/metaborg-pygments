@@ -9,7 +9,10 @@ class ESVLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (words(('language','line comment','block comment','fences'), suffix=r'\b'), Keyword),
+            (words(('module','imports',
+                    'language','name','description','extensions','table','start','symbols','provider','observer','context',
+                    'menus','menu','action','openeditor','source','meta','realtime',
+                    'line comment','block comment','fences'), suffix=r'\b'), Keyword),
             (r'"[^"^\n]*"', Literal.String),
             (r'[\.\,\|\[\]\(\)\{\}\<\>\;\:\*]', Text.Punctuation),
             (r'/\*', Comment.Multiline, 'comment'),
