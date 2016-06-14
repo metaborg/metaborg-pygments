@@ -14,7 +14,7 @@ class SDF3Lexer(RegexLexer):
                     'template options','tokenize','newlines','none',
                     'separating','leading','trailing','reject','prefer',
                     'avoid','priorities','bracket','left','right',
-                    'non-assoc'), suffix=r'\b'), Keyword),
+                    'non-assoc','longest-match'), suffix=r'\b'), Keyword),
             (r'(\+|\?|\*)', Operator),
             (r'"[^"^\n]*"', Literal.String),
             (r'\d+', Literal.Number),
