@@ -12,6 +12,7 @@ class ESVLexer(RegexLexer):
             (words(('module','imports',
                     'language','name','description','extensions','table','start','symbols','provider','observer','context',
                     'menus','menu','action','openeditor','source','meta','realtime',
+                    'shell','evaluation method','shell start symbol',
                     'line comment','block comment','fences'), suffix=r'\b'), Keyword),
             (r'"[^"^\n]*"', Literal.String),
             (r'[\.\,\|\[\]\(\)\{\}\<\>\;\:\*]', Text.Punctuation),
