@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-lexers = [
+meta_lexers = [
     'aterm    = metaborg.pygments.lexers.meta:ATermLexer',
     'esv      = metaborg.pygments.lexers.meta:ESVLexer',
     'nabl     = metaborg.pygments.lexers.meta:NaBLLexer',
@@ -8,9 +8,11 @@ lexers = [
     'sdf3     = metaborg.pygments.lexers.meta:SDF3Lexer',
     'stratego = metaborg.pygments.lexers.meta:StrategoLexer',
     'dynsem   = metaborg.pygments.lexers.meta:DynSemLexer',
+    'doc-lex  = metaborg.pygments.lexers.meta:DocLEXLexer',
+    'doc-cf   = metaborg.pygments.lexers.meta:DocCFLexer',
 ]
 
-meta_lexers = [
+lexers = [
     'entity   = metaborg.pygments.lexers:EntityLexer',
     'fj       = metaborg.pygments.lexers:FJLexer',
     'lmr      = metaborg.pygments.lexers:LMRLexer',
@@ -23,6 +25,6 @@ setup(
     packages = find_packages(),
     install_requires = ['Pygments>=2'],
     entry_points = {
-        'pygments.lexers' : lexers + meta_lexers,
+        'pygments.lexers' : meta_lexers + lexers,
     },
 )
