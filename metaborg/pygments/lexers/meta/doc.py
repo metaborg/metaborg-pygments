@@ -9,14 +9,14 @@ class BaseDocLexer(RegexLexer):
 
     tokens = {
         'lex': [
-            (r'"', Syntax.Meta.Marker.Lex, 'lex-lit'),
-            (r'\[', Syntax.Meta.Punctuation, 'lex-class'),
-            (r'[\w_\-\']+', Syntax.Meta.Variable),
-            (r'[\{\}\?\+\*\(\)]', Syntax.Meta.Punctuation),
+            (r'"', Syntax.Lex.Marker, 'lex-lit'),
+            (r'\[', Syntax.Lex.Punctuation, 'lex-class'),
+            (r'[\w_\-\']+', Syntax.Lex.Variable),
+            (r'[\{\}\?\+\*\(\)]', Syntax.Lex.Punctuation),
             (r'/\*', Comment.Multiline, 'comment'),
             (r'//.*$', Comment.Singleline),
             (r'\s+', Text.Whitespace),
-            (r'.', Generic.Deleted),
+            (r'.', Syntax.Lex),
         ],
         'comment': [
             (r'[^*/]', Comment.Multiline),
@@ -26,36 +26,38 @@ class BaseDocLexer(RegexLexer):
         ],
 
         'lex-lit': [
-            (r'\\', Syntax.Meta.Punctuation, 'lex-lit-escape'),
-            (r'"', Syntax.Meta.Marker.Lex, '#pop'),
-            (r'.', Syntax.Object),
+            (r'\\', Syntax.Lex.Punctuation, 'lex-lit-escape'),
+            (r'"', Syntax.Lex.Marker, '#pop'),
+            (r'.', Syntax.Lex.Literal),
         ],
         'lex-lit-escape': [
-            (r'.', Syntax.Object, '#pop'),
+            (r'.', Syntax.Lex.Literal, '#pop'),
         ],
 
         'lex-class': [
-            (r'\\', Syntax.Meta.Punctuation, 'lex-class-escape'),
-            (r'\]', Syntax.Meta.Punctuation, '#pop'),
-            (r'\-', Syntax.Meta.Punctuation),
-            (r'.', Syntax.Object.Char),
+            (r'\\', Syntax.Lex.Punctuation, 'lex-class-escape'),
+            (r'\]', Syntax.Lex.Punctuation, '#pop'),
+            (r'\-', Syntax.Lex.Punctuation),
+            (r'.', Syntax.Lex.Char),
         ],
         'lex-class-escape': [
-            (r'.', Syntax.Object.Char, '#pop'),
+            (r'.', Syntax.Lex.Char, '#pop'),
         ],
 
         'cf': [
-            (r'\\\<', Syntax.Meta.Marker.CF, 'cf-nonterm-<'),
-            (r'\\\[', Syntax.Meta.Marker.CF, 'cf-nonterm-['),
+            (r'\\\<', Syntax.CF.Marker, 'cf-nonterm-<'),
+            (r'\\\[', Syntax.CF.Marker, 'cf-nonterm-['),
             (r'\s+', Text.Whitespace),
-            (r'.', Syntax.Object),
+            (r'[\w][\w_\-]*', Syntax.CF.Keyword), # heuristic to detect keywords
+            (r'[\!\@\#\$\%\^\&\(\)\|\<\>\.\?\+\*\[\]\-\_\:\;\"\'\,\\\{\}\=\~\`]+', Syntax.CF.Punctuation),
+            (r'.', Syntax.CF),
         ],
         'cf-nonterm-<': [
-            (r'\>', Syntax.Meta.Marker.CF, '#pop'), # first, because 'lex' always matches
+            (r'\>', Syntax.CF.Marker, '#pop'), # first, because 'lex' always matches
             include('lex'),
         ],
         'cf-nonterm-[': [
-            (r'\]', Syntax.Meta.Marker.CF, '#pop'), # first, because 'lex' always matches
+            (r'\]', Syntax.CF.Marker, '#pop'), # first, because 'lex' always matches
             include('lex'),
         ],
     }
@@ -91,9 +93,9 @@ class DocFilter(Filter):
 
     def filter(self, lexer, stream):
         for ttype, value in stream:
-            if ttype is Syntax.Meta.Marker.Lex:
-                yield Syntax.Meta.Punctuation, value
-            elif ttype is Syntax.Meta.Marker.CF:
+            if ttype is Syntax.Lex.Marker:
+                yield Syntax.Lex.Punctuation, value
+            elif ttype is Syntax.CF.Marker:
                 pass
             else:
                 yield ttype, value
