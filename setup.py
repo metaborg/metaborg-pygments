@@ -9,7 +9,8 @@ meta_lexers = [
     'stratego = metaborg.pygments.lexers.meta:StrategoLexer',
     'dynsem   = metaborg.pygments.lexers.meta:DynSemLexer',
     'doc-lex  = metaborg.pygments.lexers.meta:DocLEXLexer',
-    'doc-cf   = metaborg.pygments.lexers.meta:DocCFLexer',
+    'doc-cf-[ = metaborg.pygments.lexers.meta:DocCFSquareLexer',
+    'doc-cf-< = metaborg.pygments.lexers.meta:DocCFPointyLexer',
 ]
 
 lexers = [
@@ -21,7 +22,7 @@ lexers = [
 
 setup(
     name = "metaborg-pygments",
-    version = "0.1.dev1",
+    version = "0.1.dev2",
     packages = find_packages(),
     install_requires = ['Pygments>=2'],
     entry_points = {
