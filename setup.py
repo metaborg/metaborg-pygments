@@ -22,7 +22,7 @@ lexers = [
 
 setup(
     name = "metaborg-pygments",
-    version = "0.1.dev2",
+    version = "0.1.dev3",
     packages = find_packages(),
     install_requires = ['Pygments>=2'],
     entry_points = {
