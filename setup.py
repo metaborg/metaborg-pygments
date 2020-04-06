@@ -6,6 +6,7 @@ meta_lexers = [
     'nabl     = metaborg.pygments.lexers.meta:NaBLLexer',
     'nabl2    = metaborg.pygments.lexers.meta:NaBL2Lexer',
     'sdf3     = metaborg.pygments.lexers.meta:SDF3Lexer',
+    'statix   = metaborg.pygments.lexers.meta:StatixLexer',
     'stratego = metaborg.pygments.lexers.meta:StrategoLexer',
     'dynsem   = metaborg.pygments.lexers.meta:DynSemLexer',
     'doc-lex  = metaborg.pygments.lexers.meta:DocLEXLexer',
@@ -22,7 +23,7 @@ lexers = [
 
 setup(
     name = "metaborg-pygments",
-    version = "0.1.dev4",
+    version = "0.1.dev5",
     packages = find_packages(),
     install_requires = ['Pygments>=2'],
     entry_points = {
