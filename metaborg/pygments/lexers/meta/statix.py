@@ -2,7 +2,7 @@ import re
 from pygments.lexer import RegexLexer, words
 from pygments.token import *
 
-class NaBL2Lexer(RegexLexer):
+class StatixLexer(RegexLexer):
     name      = 'Statix'
     aliases   = ['statix']
     filenames = ['*.stx', '*.stxtest']
